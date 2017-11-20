@@ -1,0 +1,25 @@
+---
+title: "Leaflet example"
+author: "Aniko Medgyesi"
+date: "November 16, 2017"
+output: html_document
+---
+
+
+
+## Salzburg Sights, November 16, 2017
+```{r,eval=TRUE, echo=FALSE}
+library(leaflet)
+set.seed(2017-10-16)
+##’’47.811195, 13.033229.
+df<-data.frame(lat=runif(20,min=47.8, max=47.9),
+               lng=runif(20, min=13, max=13.1))
+my_map<-df %>% leaflet() %>%
+  addTiles("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    attribution = paste("&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a>",
+      "contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>") 
+  ) %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+
+my_map
+```
